@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196f3</color>
+    <color name="colorPrimaryDark">#1d2238</color>
+    <color name="colorAccent">#4f3c74</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="lightwhite">#99ffffff</color>
+    <color name="green">#8bc34a</color>
+    <color name="red">#ff5722</color>
+    <color name="orange">#ffc107</color>
+    <color name="buttonColor">#fd5e53</color>
+    <color name="grey">#424242</color>
+    <color name="color2">#26b47a</color>
+    <color name="darkBlue">#673ab7</color>
+    <color name="yellow">#ffff00</color>
+    <color name="darkestBlue">#1a237e</color>
+    <color name="cyan">#00bcd4</color>
+    <color name="yellowShade1">#fff59d</color>
+    <color name="darkBG">#1d2238</color>
+    <color name="midnightBlue">#4f3c74</color>
+    <color name="darkBG2">#060518</color>
+    <color name="skinColor">#feccb5</color>
+    <color name="periwinkle">#d3d7fe</color>
+    <color name="lightSkin">#feeed5</color>
+    <color name="palePink">#fae4e6</color>
+    <color name="prussianBlue">#03132f</color>
+
+    <color name="yellow2">#ffe082</color>
+
+    <color name="bgcolor">#ffffff</color>
+    <color name="darkTextColor">#000000</color>
+    <color name="lightTextColor">#ffffff</color>
+</resources>
