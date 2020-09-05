@@ -23,19 +23,6 @@
         <activity android:name=".HealthStatusActivity"></activity>
         <activity android:name=".RunModelActivity" />
 
-        <service android:name=".MyService">
-            <intent-filter>
-                <action android:name="android.accessibilityservice.AccessibilityService" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.accessibilityservice"
-                android:resource="@xml/accessibilityservice" />
-        </service>
-
-        <activity android:name=".AccessElementsActivity" />
-        <activity android:name=".WebAccessActivity" />
-        <activity android:name=".ChatbotActivity" />
         <activity android:name=".ChatBotActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

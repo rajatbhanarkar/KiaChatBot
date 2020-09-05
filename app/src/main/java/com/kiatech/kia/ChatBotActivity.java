@@ -326,6 +326,7 @@ public class ChatBotActivity extends AppCompatActivity {
                     params.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "");
 
                     textToSpeech.setLanguage(Locale.getDefault());
+                    textToSpeech.setSpeechRate(1f);
                     textToSpeech.speak(""+stringToSpeak, TextToSpeech.QUEUE_FLUSH, params, "UniqueID");
                     //textToSpeech.speak(""+stringToSpeak, TextToSpeech.QUEUE_FLUSH, null);
                 }
