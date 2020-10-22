@@ -78,7 +78,7 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
     TextView Logo;
     ChatCustomAdapter chatCustomadapter;
 
-    // Text-to-speech and Speech Recognizer for voice controlled app
+    // Text-to-speech and Speech Recognizer for the voice controlled app
 
     TextToSpeech textToSpeech = null;
     SpeechRecognizer speechRecognizer;
