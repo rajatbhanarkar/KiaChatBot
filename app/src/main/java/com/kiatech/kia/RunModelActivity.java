@@ -45,6 +45,9 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+// Activity to init and run the TFLite models
+// Work is in progress here
+
 public class RunModelActivity extends AppCompatActivity {
 
     /*Interpreter tflite;

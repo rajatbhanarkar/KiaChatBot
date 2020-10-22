@@ -5,37 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    android:background="@color/darkBG"
+    android:background="@color/darkBackground"
     android:id="@+id/rlmain"
     tools:context=".ChatBotActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="15dp"
-        android:padding="10dp"
-        android:background="@color/darkBG">
+        android:elevation="0dp"
+        android:padding="15dp"
+        android:background="@color/darkBackground">
 
         <ImageView
             android:id="@+id/ivchart"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginLeft="10dp"
             android:src="@drawable/statistics"
             android:layout_centerVertical="true" />
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/ivlogo"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:scaleX="1.5"
             android:scaleY="1.5"
             android:layout_centerInParent="true"
-            android:src="@drawable/chatbot_logo"/>
+            android:src="@drawable/chatbot_logo"/>-->
+
+        <TextView
+            android:id="@+id/ivlogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:paddingTop="@dimen/_2sdp"
+            android:fontFamily="@font/poppinssemibold"
+            android:textSize="@dimen/_16sdp"
+            android:text="Chat"/>
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/menu"
             android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
@@ -49,34 +61,34 @@
         android:id="@+id/lvchats"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="80dp"
         android:divider="@null"
         android:dividerHeight="0dp"
-        android:transcriptMode="alwaysScroll"
-        android:scrollbars="none" />
+        android:scrollbars="none"
+        android:transcriptMode="alwaysScroll" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="5dp"
         android:clipToPadding="false"
         android:layout_alignParentBottom="true">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="3dp"
             android:background="@color/colorPrimary"
             android:layout_centerVertical="true"/>
 
         <ImageView
             android:id="@+id/ivgooglemic"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_centerInParent="true"
             android:padding="15dp"
             android:layout_marginBottom="10dp"
-            android:elevation="10dp"
+            android:elevation="0dp"
             android:background="@drawable/circle"
             android:src="@drawable/google_mic"/>
 

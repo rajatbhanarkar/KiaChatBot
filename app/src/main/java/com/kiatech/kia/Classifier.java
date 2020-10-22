@@ -4,6 +4,10 @@ import android.graphics.Bitmap;
 
 import java.util.List;
 
+// This is the ML/DL Model integration code using tensorflow lite
+
+// This code is for image classification
+
 public interface Classifier {
     class Recognition {
         private final String id; //unique identifier
@@ -48,7 +52,6 @@ public interface Classifier {
             return resultString.trim();
         }
     }
-
 
     List<Recognition> recognizeImage(Bitmap bitmap);
 

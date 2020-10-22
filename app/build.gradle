@@ -30,6 +30,11 @@ android {
             noCompress "tflite"
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/DEPENDENCIES'
+    }
 }
 
 dependencies {
@@ -51,10 +56,14 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.github.Theophrast:SquareImageView:1.0.1'
 
-    implementation 'com.google.firebase:firebase-ml-model-interpreter:22.0.3'
+
+    implementation 'com.google.firebase:firebase-ml-model-interpreter:22.0.4'
     implementation 'org.tensorflow:tensorflow-lite:2.0.0'
 
     implementation 'com.wonderkiln:camerakit:0.13.1'
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    implementation 'com.google.cloud:google-cloud-dialogflow:2.1.0'
+    implementation 'io.grpc:grpc-okhttp:1.30.0'
 }

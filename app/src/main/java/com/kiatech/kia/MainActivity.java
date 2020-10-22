@@ -8,6 +8,8 @@ import android.os.CountDownTimer;
 
 import com.google.firebase.FirebaseApp;
 
+// Main splash screen
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -15,16 +17,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.darkBG));
+        // UI Stuff, making nav bar and status bar color same as background
+
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.darkBackground));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.darkBackground));
+
+        // 1 second countdown timer to go to chatbot
 
         CountDownTimer countDownTimer = new CountDownTimer(1000, 1000) {
             @Override
-            public void onTick(long l) {
-
-            }
+            public void onTick(long l) { }
 
             @Override
-            public void onFinish() {
+            public void onFinish() { // when timer complete, go to chatbot
                 Intent intent = new Intent(getApplicationContext(), ChatBotActivity.class);
                 startActivity(intent);
                 finish();
