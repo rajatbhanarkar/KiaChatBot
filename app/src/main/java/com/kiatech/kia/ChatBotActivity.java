@@ -12,12 +12,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.DataSetObserver;
 import android.graphics.Point;
 import android.net.Uri;
+import android.net.rtp.AudioStream;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.StrictMode;
 import android.provider.ContactsContract;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -49,18 +54,19 @@ import com.android.volley.toolbox.Volley;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
+import com.google.cloud.dialogflow.v2.AudioEncoding;
 import com.google.cloud.dialogflow.v2.DetectIntentResponse;
 import com.google.cloud.dialogflow.v2.QueryInput;
 import com.google.cloud.dialogflow.v2.SessionName;
 import com.google.cloud.dialogflow.v2.SessionsClient;
 import com.google.cloud.dialogflow.v2.SessionsSettings;
 import com.google.cloud.dialogflow.v2.TextInput;
-import com.google.common.collect.Lists;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
-
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,7 +80,7 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
 
     RelativeLayout relativeLayout;
     ListView Chats;
-    ImageView GoogleMic, Chart;
+    ImageView GoogleMic, Chart, Diary;
     TextView Logo;
     ChatCustomAdapter chatCustomadapter;
 
@@ -116,8 +122,16 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
 
         // Initialize shared Preferences
 
+        //https://official-joke-api.appspot.com/random_joke
+
         sharedPreferences = getSharedPreferences("KiaSharedPreferences", MODE_PRIVATE);
         editor = sharedPreferences.edit();
+
+        //Ask for permissions
+
+        if ((ContextCompat.checkSelfPermission(ChatBotActivity.this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(ChatBotActivity.this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(ChatBotActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)){
+            ActivityCompat.requestPermissions(ChatBotActivity.this, new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_CONTACTS, Manifest.permission.CALL_PHONE}, 1000);
+        }
 
         // Declaring all IDs and linking to XML
 
@@ -125,7 +139,16 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
         GoogleMic = (ImageView)findViewById(R.id.ivgooglemic);
         Logo = (TextView)findViewById(R.id.ivlogo);
         Chart = (ImageView)findViewById(R.id.ivchart);
+        Diary = (ImageView)findViewById(R.id.ivdiary);
         relativeLayout = (RelativeLayout)findViewById(R.id.rlmain);
+
+        Diary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RunModelActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Init DialogFlow ChatBot, connect to agent at cloud server
 
@@ -147,6 +170,8 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
                         SpeechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                         SpeechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                         SpeechIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, ChatBotActivity.this.getPackageName());
+                        SpeechIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 2000000);
+                        //SpeechIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 2000000);
 
                         SpeechRecognitionListener speechRecognitionListener = new SpeechRecognitionListener();
                         speechRecognizer.setRecognitionListener(speechRecognitionListener);
@@ -168,7 +193,6 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
                 return true;
             }
         });
-
         // Direct user to health status activity
 
         Chart.setOnClickListener(new View.OnClickListener() {
@@ -183,6 +207,15 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
 
         chatCustomadapter = new ChatCustomAdapter();
         Chats.setAdapter(chatCustomadapter);
+    }
+
+    private MappedByteBuffer loadModelFile(AssetManager assetManager, String modelPath) throws IOException {
+        AssetFileDescriptor fileDescriptor = assetManager.openFd(modelPath);
+        FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
+        FileChannel fileChannel = inputStream.getChannel();
+        long startOffset = fileDescriptor.getStartOffset();
+        long declaredLength = fileDescriptor.getDeclaredLength();
+        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
     }
 
     // -------------------------------- Speech Recognition Listener --------------------------------
@@ -224,13 +257,14 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
 
         @Override
         public void onResults(Bundle bundle) { // When speech input of user received
+            Log.d("---- Bundle ----", bundle.toString());
             ArrayList<String> result = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             res = result.get(0); // Getting top result
             res = ""+res.substring(0, 1).toUpperCase()+res.substring(1);
 
             Messages.add(res);
             chatCustomadapter.notifyDataSetChanged();
-
+            
             // sending message to the dialogflow agent
             sendMsgToBot(res);
         }
@@ -344,7 +378,7 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
         try{
             // Getting project credentials and details
 
-            InputStream inputStream = getResources().openRawResource(R.raw.chatbot);
+            InputStream inputStream = getResources().openRawResource(R.raw.collegechatbot);
             GoogleCredentials googleCredentials = GoogleCredentials.fromStream(inputStream); //.createScoped(Lists.newArrayList("https://www.googleapis.com/auth/cloud-platform"));
             String projectId = ((ServiceAccountCredentials)googleCredentials).getProjectId();
 
@@ -381,7 +415,12 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
         if(returnResponse != null){
             String botReply = returnResponse.getQueryResult().getFulfillmentText();
             if(!botReply.isEmpty()){
-                RegisterMessage(botReply);
+                if (botReply.contains("Task")){
+                    doTask(botReply.substring(5));
+                }
+                else{
+                    RegisterMessage(botReply);
+                }
             }
             else{
                 RegisterMessage("Sorry, something went wrong!");
@@ -395,6 +434,25 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
     //------------------------------- Feature Tasks ------------------------------------------------
 
     // Do some basic tasks as per user commands, Not in our main aim
+
+    void doTask(String instruction){
+
+        if (instruction.contains("Call")){
+            instruction = instruction.substring(5);
+            CallSomeone(instruction);
+        }
+        else if (instruction.contains("SMS")){
+            instruction = instruction.substring(8);
+            SMSSomeone(instruction);
+        }
+        else if (instruction.contains("Open")){
+            instruction = instruction.substring(5);
+            OpenApp(instruction);
+        }
+        else{
+            GoogleSearchAPI(instruction);
+        }
+    }
 
     void OpenApp(String instruction){
         PackageManager packageManager = getPackageManager();
@@ -434,7 +492,6 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
     }
 
     void CallSomeone(String instruction){
-        instruction = instruction.replace("Call ","");
         if (instruction.matches("[0-9]+")){
             instruction.replaceAll("\\s+", "");
             RegisterMessage("Calling "+instruction);
@@ -623,22 +680,7 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
 
 // Previously hardcoded stuff, will now be replaced by chatbot actions
 
-/*void doTask(String instruction){
-    String[] ss = instruction.split(" ");
-
-    if (ss[0].equalsIgnoreCase("Open")){
-        OpenApp(instruction);
-    }
-    else if (ss[0].equalsIgnoreCase("Connect")){
-        ConnectSite(instruction);
-    }
-    else if (ss[0].equalsIgnoreCase("Call")){
-        CallSomeone(instruction);
-    }
-    else{
-        GoogleSearchAPI(instruction);
-    }
-}*/
+/**/
 
 /*if (!sharedPreferences.contains("FirstTime")){
     if (count == 0){

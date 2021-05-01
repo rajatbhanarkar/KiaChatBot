@@ -53,7 +53,7 @@ public interface Classifier {
         }
     }
 
-    List<Recognition> recognizeImage(Bitmap bitmap);
+    String recognizeImage(Bitmap bitmap);
 
     void close();
 }

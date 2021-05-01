@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_70sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:src="@drawable/chatbot_logo"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppinssemibold"
+            android:textSize="@dimen/_20sdp"
+            android:text="Hey, I'm Kia!"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/poppinsregular"
+            android:textSize="@dimen/_14sdp"
+            android:text="What name should I call you with?"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/etrl2name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your name"
+            android:inputType="textCapWords"
+            android:textSize="@dimen/_13sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:background="@drawable/rounded_corners_2"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingRight="@dimen/_15sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:textColor="@color/black"
+            android:paddingBottom="@dimen/_8sdp"
+            android:fontFamily="@font/poppinsregular"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:backgroundTint="#fafafa"/>
+
+        <Button
+            android:id="@+id/btnrl2next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corners_2"
+            android:fontFamily="@font/poppinssemibold"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:text="Next"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:textSize="@dimen/_13sdp"
+            android:textAllCaps="false"
+            android:paddingLeft="@dimen/_30sdp"
+            android:paddingRight="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_40sdp"/>
+    </LinearLayout>
+
+</RelativeLayout>

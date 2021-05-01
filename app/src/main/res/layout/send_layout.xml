@@ -5,11 +5,12 @@
     android:background="@color/darkBackground"
     android:padding="10dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="50dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -19,18 +20,19 @@
             android:text="Hello Rajat!"
             android:fontFamily="@font/poppinsregular"
             android:padding="12dp"
-            android:gravity="center"
             android:textStyle="bold"
+            android:layout_marginRight="55dp"
+            android:layout_alignParentRight="true"
             android:textSize="@dimen/_12sdp"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:background="@drawable/chat_send"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
             android:src="@drawable/femaleprofpic2"/>
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

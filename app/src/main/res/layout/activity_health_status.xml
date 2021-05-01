@@ -5,21 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/darkBackground"
+    android:background="@color/white"
     tools:context=".HealthStatusActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="@color/darkBackground">
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/ivback"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/ic_back"
+            android:src="@drawable/ic_back_black"
+            android:tint="@color/newLightBlue"
             android:layout_centerVertical="true" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_centerInParent="true"
             android:textStyle="bold"
             android:textSize="@dimen/_16sdp"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <ImageView
             android:id="@+id/tvinfo"
@@ -39,6 +39,7 @@
             android:layout_height="35dp"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="5dp"
+            android:tint="@color/newLightBlue"
             android:src="@drawable/ic_info"
             android:layout_centerVertical="true" />
 
@@ -55,12 +56,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hey Rajat,\nyou seem to be really improving this week!"
-        android:fontFamily="@font/poppinsregular"
+        android:fontFamily="@font/poppinssemibold"
         android:layout_marginLeft="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_30sdp"
         android:textStyle="bold"
         android:textSize="@dimen/_11sdp"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,22 +74,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Day Average:"
-            android:fontFamily="@font/poppinsregular"
+            android:fontFamily="@font/poppinssemibold"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textSize="@dimen/_11sdp"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="6 / 7"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:fontFamily="@font/poppinsregular"
+            android:fontFamily="@font/poppinssemibold"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textSize="@dimen/_11sdp"
-            android:textColor="@color/yellow" />
+            android:textColor="@color/green" />
     </LinearLayout>
 
     <LinearLayout
@@ -102,22 +103,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Week Average:"
-            android:fontFamily="@font/poppinsregular"
+            android:fontFamily="@font/poppinssemibold"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textSize="@dimen/_11sdp"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5.5 / 7"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:fontFamily="@font/poppinsregular"
+            android:fontFamily="@font/poppinssemibold"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textSize="@dimen/_11sdp"
-            android:textColor="@color/yellow" />
+            android:textColor="@color/green" />
     </LinearLayout>
 
     <LinearLayout
@@ -131,22 +132,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Month Average:"
-            android:fontFamily="@font/poppinsregular"
+            android:fontFamily="@font/poppinssemibold"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textSize="@dimen/_11sdp"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4.2 / 7"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:fontFamily="@font/poppinsregular"
+            android:fontFamily="@font/poppinssemibold"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textSize="@dimen/_11sdp"
-            android:textColor="@color/yellow" />
+            android:textColor="@color/green" />
     </LinearLayout>
 
 </LinearLayout>

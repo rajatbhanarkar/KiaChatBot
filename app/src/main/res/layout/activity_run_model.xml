@@ -1,69 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkBG"
+    android:background="@color/white"
     android:padding="@dimen/_20sdp"
     tools:context=".RunModelActivity">
 
-    <com.wonderkiln.camerakit.CameraView
-        android:id="@+id/cameraView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_300sdp"
-        android:layout_gravity="center|top" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/ivlogo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|top"
-        android:layout_marginTop="@dimen/_320sdp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:paddingTop="@dimen/_2sdp"
+        android:fontFamily="@font/poppinssemibold"
+        android:textSize="@dimen/_15sdp"
+        android:text="Tell me how your day was! :)"/>
 
-        <ImageView
-            android:id="@+id/imageViewResult"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:padding="2dp" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_250sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_centerHorizontal="true"
+        app:cardBackgroundColor="#fafafa">
 
-        <TextView
-            android:id="@+id/textViewResult"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:fadeScrollbars="false"
-            android:gravity="center"
-            android:maxLines="15"
+            android:layout_height="match_parent">
 
-            android:scrollbars="vertical"
-            android:textColor="@color/yellow" />
+            <com.wonderkiln.camerakit.CameraView
+                android:id="@+id/cameraView"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_250sdp"
+                android:layout_gravity="center|top" />
 
-    </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
-
-    <Button
-        android:id="@+id/btnToggleCamera"
+    <TextView
+        android:id="@+id/textViewResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="@dimen/_60sdp"
-        android:text="Toggle Camera"
-        android:layout_alignParentBottom="true"
-        android:textColor="@color/yellow"
-        android:background="@drawable/rounded_corners_2"
-        android:textAllCaps="false" />
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_350sdp"
+        android:padding="@dimen/_10sdp"
+        android:textSize="@dimen/_14sdp"
+        android:text="Glad to know that you're happy"
+        android:fontFamily="@font/poppinssemibold"
+        android:textColor="@color/black" />
 
-    <Button
-        android:id="@+id/btnDetectObject"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <ImageView
+        android:id="@+id/ivplaypause"
+        android:layout_width="@dimen/_55sdp"
+        android:layout_height="@dimen/_55sdp"
+        android:background="@drawable/circle3"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_play"
+        android:tint="@color/white"
+        android:padding="@dimen/_10sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_430sdp"/>
+
+    <TextView
+        android:id="@+id/tvdetectemotion"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"/>
+
+    <ImageView
+        android:id="@+id/ivbtnflip"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:padding="@dimen/_8sdp"
         android:layout_alignParentBottom="true"
-        android:text="Detect Object"
-        android:textAllCaps="false"
-        android:textColor="@color/yellow"
-        android:background="@drawable/rounded_corners_2"
-        android:visibility="invisible" />
+        android:layout_alignParentRight="true"
+        android:src="@drawable/icflip_camera"
+        android:background="@drawable/circle3"
+        android:backgroundTint="@color/newLightBlue"/>
 
 </RelativeLayout>

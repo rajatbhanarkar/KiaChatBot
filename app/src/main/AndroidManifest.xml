@@ -10,15 +10,23 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HealthStatusActivity"></activity>
+        <activity android:name=".WebViewActivity"></activity>
+        <activity android:name=".CounsellorBotActivity" />
+        <activity android:name=".MusicPlayerActivity" />
+        <activity android:name=".HomePageActivity" />
+        <activity
+            android:name=".UserRegistrationActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ImageClassificationActivity" />
+        <activity android:name=".HealthStatusActivity" />
         <activity android:name=".RunModelActivity" />
-
         <activity android:name=".ChatBotActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

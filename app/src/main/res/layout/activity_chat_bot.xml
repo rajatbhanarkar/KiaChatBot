@@ -46,9 +46,10 @@
             android:text="Chat"/>
 
         <ImageView
+            android:id="@+id/ivdiary"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/menu"
+            android:src="@drawable/ic_diary"
             android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"

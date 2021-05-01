@@ -1,6 +1,7 @@
 package com.kiatech.kia;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -8,8 +9,11 @@ import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
+import android.util.Log;
 
+import com.google.common.primitives.UnsignedInteger;
 import org.tensorflow.lite.Interpreter;
+import org.tensorflow.lite.Tensor;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -21,6 +25,7 @@ import java.nio.FloatBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -28,13 +33,13 @@ import java.util.PriorityQueue;
 // Image classification via tflite
 
 public class TensorFlowImageClassifier implements Classifier {
-    private static final int MAX_RESULTS = 3;
+    private static final int MAX_RESULTS = 1;
     private static final int BATCH_SIZE = 1;
     private static final int PIXEL_SIZE = 1;
     private static final float THRESHOLD = 0.1f;
 
-    private static final int IMAGE_MEAN = 128;
-    private static final float IMAGE_STD = 128.0f;
+    private static final float IMAGE_MEAN = 127.5f;
+    private static final float IMAGE_STD = 127.5f;
 
     private Interpreter interpreter;
     private int inputSize;
@@ -57,19 +62,81 @@ public class TensorFlowImageClassifier implements Classifier {
     }
 
     @Override
-    public List<Recognition> recognizeImage(Bitmap bitmap) {
-        ByteBuffer byteBuffer = convertBitmapToByteBuffer(bitmap);
+    public String recognizeImage(Bitmap bitmap) {
+        //ByteBuffer byteBuffer = convertBitmapToByteBuffer(bitmap);
 
-        if (quant) {
-            byte[][] result = new byte[1][labelList.size()];
-            interpreter.run(byteBuffer, result);
-            return getSortedResultByte(result);
-        } else {
-            float[][] result = new float[1][labelList.size()];
-            interpreter.run(byteBuffer, result);
-            return getSortedResultFloat(result);
+        /*Log.d("ByteBuffer", ""+byteBuffer.capacity());
+        Log.d("Interpreter", interpreter.toString());
+        Log.d("InputTensor", ""+interpreter.getInputTensor(0).toString());
+        Log.d("OutputTensor", ""+interpreter.getOutputTensor(0).toString());*/
+
+        Log.d("---- Count ----", ""+interpreter.getInputTensorCount());
+        Log.d("---- Type ----", ""+interpreter.getInputTensor(0).toString());
+
+
+        float[][][][] myArray = new float[1][inputSize][inputSize][1];
+
+        int[] intPixels = new int[inputSize*inputSize];
+
+        bitmap.getPixels(intPixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+        int pixel = 0;
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+
+        for(int i=0 ; i<intPixels.length ; i++){
+            max = Math.max(max, intPixels[i]);
+            min = Math.max(min, intPixels[i]);
         }
 
+        for (int i=0; i < inputSize ; i++) {
+            for(int j=0 ; j<inputSize ; j++){
+                //myArray[0][i][j][0] = mapInRange(max, min, intPixels[pixel++]);
+                myArray[0][i][j][0] = ((intPixels[pixel++]&0xff)-IMAGE_MEAN)/IMAGE_STD;
+                //myArray[0][i][j][0] = (float) Math.random();
+            }
+        }
+
+        float[][] result = new float[1][6];
+
+        interpreter.run(myArray, result);
+
+        //String[] cats = new String[]{"Angry", "Disgust", "Fear", "Happy", "Sad", "Surprised", "Neutral"};
+
+        String[] cats = new String[]{"Sad", "Sad", "Happy", "Neutral", "Sad", "Happy"};
+
+        //String[] cats = new String[]{"Happy", "Neutral", "Sad"};
+
+        Log.d("---- RESULT ----", Arrays.toString(result[0]));
+
+        return cats[maxIndex(result[0])];
+        //return "Happy";
+    }
+
+    int maxIndex(float[] arr){
+        int max = -1;
+        float maxVal = -1;
+
+        for(int i=0 ; i<arr.length ; i++){
+            if (maxVal<arr[i]){
+                max = i;
+                maxVal = arr[i];
+            }
+        }
+
+        Log.d("---- MAXVAL ----", ""+maxVal);
+        Log.d("---- MAXIDX ----", ""+max);
+
+        return max;
+    }
+
+    float mapInRange(int max, int min, int value){
+        float oldRange = max-min;
+        float newRange = 1;
+
+        if (oldRange == 0){ return 0; }
+
+        return (((value-min)*newRange)/oldRange);
     }
 
     @Override
@@ -107,12 +174,15 @@ public class TensorFlowImageClassifier implements Classifier {
             byteBuffer = ByteBuffer.allocateDirect(4 * BATCH_SIZE * inputSize * inputSize * PIXEL_SIZE);
         }
 
+        Log.d("ByteBuffer", ""+byteBuffer.capacity());
+
+
         byteBuffer.order(ByteOrder.nativeOrder());
         int[] intValues = new int[inputSize * inputSize];
         bitmap.getPixels(intValues, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
         int pixel = 0;
-        for (int i = 0; i < inputSize; ++i) {
-            for (int j = 0; j < inputSize; ++j) {
+        for (int i = 0; i < inputSize; i++) {
+            for (int j = 0; j < inputSize; j++) {
                 final int val = intValues[pixel++];
                 if (quant) {
                     byteBuffer.put((byte) ((val >> 16) & 0xFF));
@@ -122,8 +192,8 @@ public class TensorFlowImageClassifier implements Classifier {
                     byteBuffer.putFloat((((val >> 16) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
                     byteBuffer.putFloat((((val >> 8) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
                     byteBuffer.putFloat((((val) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
-                }
 
+                }
             }
         }
         return byteBuffer;

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.webkit.WebViewClient;
 
 import com.google.firebase.FirebaseApp;
 
@@ -19,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
         // UI Stuff, making nav bar and status bar color same as background
 
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.darkBackground));
-        getWindow().setStatusBarColor(getResources().getColor(R.color.darkBackground));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.white));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.white));
 
         // 1 second countdown timer to go to chatbot
 

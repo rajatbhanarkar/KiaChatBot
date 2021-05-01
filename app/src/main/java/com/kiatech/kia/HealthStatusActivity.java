@@ -48,8 +48,8 @@ public class HealthStatusActivity extends AppCompatActivity implements OnChartGe
 
         // UI Stuff, making nav bar and status bar color same as background
 
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.darkBackground));
-        getWindow().setStatusBarColor(getResources().getColor(R.color.darkBackground));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.white));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.white));
 
         // Declaring all IDs and linking to XML
 
@@ -90,10 +90,10 @@ public class HealthStatusActivity extends AppCompatActivity implements OnChartGe
 
         ArrayList<Entry> valueList = new ArrayList<>();
         valueList.add(new Entry(0, 1));
-        valueList.add(new Entry(1, 4));
+        valueList.add(new Entry(1, 3));
         valueList.add(new Entry(2, 2));
         valueList.add(new Entry(3, 5));
-        valueList.add(new Entry(4, 3));
+        valueList.add(new Entry(4, 4));
         valueList.add(new Entry(5, 6));
         valueList.add(new Entry(6, 7));
 
@@ -104,10 +104,10 @@ public class HealthStatusActivity extends AppCompatActivity implements OnChartGe
         Description description = new Description();
         description.setText("");
         lineChart.setDescription(description);
-        set1.setColor(getResources().getColor(R.color.yellow));
-        set1.setValueTextColor(getResources().getColor(R.color.white));
+        set1.setColor(getResources().getColor(R.color.newLightBlue));
+        set1.setValueTextColor(getResources().getColor(R.color.black));
         set1.setValueTextSize(0f);
-        set1.setLineWidth(2f);
+        set1.setLineWidth(4f);
         set1.setDrawCircles(false);
 
         // X-Axis labels
@@ -119,42 +119,42 @@ public class HealthStatusActivity extends AppCompatActivity implements OnChartGe
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(AxisLabels));
-        xAxis.setTextColor(getResources().getColor(R.color.white));
+        xAxis.setTextColor(getResources().getColor(R.color.black));
         xAxis.setTypeface(Typeface.MONOSPACE);
         xAxis.setTextSize(12f);
-        xAxis.setAxisLineColor(getResources().getColor(R.color.colorPrimary));
-        xAxis.setGridColor(getResources().getColor(R.color.colorPrimary));
+        xAxis.setAxisLineColor(getResources().getColor(R.color.green));
+        xAxis.setGridColor(getResources().getColor(R.color.palePink));
         xAxis.setGridLineWidth(0.5f);
-        xAxis.setAxisLineWidth(2f);
+        xAxis.setAxisLineWidth(4f);
 
         // Left Y-axis init
 
         YAxis leftAxis = lineChart.getAxisLeft();
-        leftAxis.setTextColor(getResources().getColor(R.color.white));
-        leftAxis.setAxisLineColor(getResources().getColor(R.color.colorPrimary));
-        leftAxis.setGridColor(getResources().getColor(R.color.colorPrimary));
+        leftAxis.setTextColor(getResources().getColor(R.color.black));
+        leftAxis.setAxisLineColor(getResources().getColor(R.color.green));
+        leftAxis.setGridColor(getResources().getColor(R.color.palePink));
         leftAxis.setTypeface(Typeface.MONOSPACE);
         leftAxis.setTextSize(12f);
         leftAxis.setGridLineWidth(0.5f);
-        leftAxis.setAxisLineWidth(2f);
+        leftAxis.setAxisLineWidth(4f);
 
         // Right Y-axis init
 
         YAxis rightAxis = lineChart.getAxisRight();
-        rightAxis.setTextColor(getResources().getColor(R.color.white));
-        rightAxis.setAxisLineColor(getResources().getColor(R.color.colorPrimary));
-        rightAxis.setGridColor(getResources().getColor(R.color.colorPrimary));
+        rightAxis.setTextColor(getResources().getColor(R.color.black));
+        rightAxis.setAxisLineColor(getResources().getColor(R.color.green));
+        rightAxis.setGridColor(getResources().getColor(R.color.palePink));
         rightAxis.setGridLineWidth(0.5f);
         rightAxis.setTypeface(Typeface.MONOSPACE);
         rightAxis.setTextSize(12f);
-        rightAxis.setAxisLineWidth(2f);
+        rightAxis.setAxisLineWidth(4f);
 
         // Plotting the dataset
 
         ArrayList<ILineDataSet> dataSet = new ArrayList<>();
         dataSet.add(set1);
         lineChart.setData(new LineData(dataSet));
-        lineChart.setBorderColor(getResources().getColor(R.color.colorPrimary));
+        lineChart.setBorderColor(getResources().getColor(R.color.newLightBlue));
         lineChart.getLegend().setEnabled(false);
     }
 
