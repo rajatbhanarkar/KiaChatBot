@@ -16,7 +16,7 @@
         android:layout_marginTop="@dimen/_80sdp"
         android:fontFamily="@font/poppinssemibold"
         android:textSize="@dimen/_18sdp"
-        android:text="Rajat, Calm yourself down"/>
+        android:text="Mahima, Calm yourself down"/>
 
     <TextView
         android:id="@+id/circleview"

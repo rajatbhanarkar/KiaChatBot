@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Health Status"
+            android:text="Mental Health Status"
             android:paddingTop="5dp"
             android:fontFamily="@font/poppinssemibold"
             android:layout_centerInParent="true"
@@ -55,7 +55,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hey Rajat,\nyou seem to be really improving this week!"
+        android:text="Hey Mahima,\nyou seem to be really improving this week!"
         android:fontFamily="@font/poppinssemibold"
         android:layout_marginLeft="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_30sdp"

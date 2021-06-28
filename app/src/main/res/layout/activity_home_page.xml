@@ -24,19 +24,20 @@
             android:clipToPadding="false">
 
             <ImageView
-                android:id="@+id/ivhpamenu"
+                android:id="@+id/ivhpadiary"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_alignParentRight="true"
-                android:padding="@dimen/_6sdp"
-                android:src="@drawable/menu"
-                android:tint="@color/black" />
+                android:padding="@dimen/_7sdp"
+                android:src="@drawable/ic_diary"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/newLightBlue" />
 
             <ImageView
                 android:id="@+id/ivmpapropic"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
-                android:src="@drawable/youngman"
+                android:src="@drawable/youngwoman"
                 android:background="@drawable/circle"
                 android:backgroundTint="@color/white"/>
 
@@ -46,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinssemibold"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:text="Hi, Rajat!"
+                android:text="Hi, Mahima!"
                 android:layout_marginLeft="@dimen/_45sdp"
                 android:elevation="15dp"
                 android:textColor="@color/black"
@@ -489,153 +490,6 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
-
-    </LinearLayout>
-
-
-
-
-    <LinearLayout
-        android:id="@+id/llrightdrawer"
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:background="@color/bgcolor"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="40dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="20dp">
-
-                <ImageView
-                    android:id="@+id/ivmenuback"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="6dp"
-                    android:rotation="180"
-                    android:src="@drawable/ic_back"
-                    android:background="@color/lightSkin"/>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                app:cardElevation="0dp"
-                android:layout_alignParentRight="true"
-                app:cardCornerRadius="35dp">
-
-                <ImageView
-                    android:id="@+id/iv2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/periwinkle"/>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="20dp"
-                app:cardElevation="0dp"
-                android:layout_alignParentBottom="true"
-                app:cardCornerRadius="50dp">
-
-                <ImageView
-                    android:id="@+id/iv3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/yellow2"/>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="25dp">
-
-                <ImageView
-                    android:id="@+id/iv4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/palePink"/>
-            </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:padding="10dp"
-                android:elevation="5dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/ivmenupropic"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/profpiclogo"
-                        android:background="@drawable/circle"
-                        android:backgroundTint="@color/white"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tvmenuname"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_13sdp"
-                            android:layout_gravity="center"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/opensans"
-                            android:text="Rajat Bhanarkar"/>
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <ListView
-                android:id="@+id/lvsidemenu"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:padding="10dp"
-                android:layout_marginTop="@dimen/_150sdp"
-                android:layout_marginBottom="@dimen/_80sdp"
-                android:scrollbars="none"
-                android:dividerHeight="5dp"
-                android:divider="@null"/>
-        </RelativeLayout>
 
     </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

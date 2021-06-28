@@ -378,7 +378,7 @@ public class ChatBotActivity extends AppCompatActivity implements BotReply{
         try{
             // Getting project credentials and details
 
-            InputStream inputStream = getResources().openRawResource(R.raw.collegechatbot);
+            InputStream inputStream = getResources().openRawResource(R.raw.lovelifeagent);
             GoogleCredentials googleCredentials = GoogleCredentials.fromStream(inputStream); //.createScoped(Lists.newArrayList("https://www.googleapis.com/auth/cloud-platform"));
             String projectId = ((ServiceAccountCredentials)googleCredentials).getProjectId();
 

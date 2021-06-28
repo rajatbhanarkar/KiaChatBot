@@ -25,6 +25,8 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.speech.tts.Voice;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -310,7 +312,16 @@ public class CounsellorBotActivity extends AppCompatActivity implements BotReply
                 if (counsgender.equals("male")){
                     CounsPic.setImageResource(R.drawable.malecounsellor);
                 }
-                RecievedText.setText(""+message.substring(1));
+                message = message.substring(1);
+
+                message = message.replace("Alex", "Mahima");
+
+                RecievedText.setText(""+message);
+                if (message.contains("http")){
+                    SpannableString spannableString = new SpannableString(message);
+                    spannableString.setSpan(new UnderlineSpan(), 0, message.length(), 0);
+                    RecievedText.setText(spannableString);
+                }
             }
             return view;
         }
@@ -382,7 +393,9 @@ public class CounsellorBotActivity extends AppCompatActivity implements BotReply
         if (counsgender.equals("male")){
             message = message.replace("Alexa", "Alex");
         }
+
         Speak(""+message); // bot speaks the message
+
         if (mode==0){
             Messages.add("b"+message); // adding message to arraylist of all messages
         }
@@ -400,7 +413,7 @@ public class CounsellorBotActivity extends AppCompatActivity implements BotReply
         try{
             // Getting project credentials and details
 
-            InputStream inputStream = getResources().openRawResource(R.raw.lovelifeagent);
+            InputStream inputStream = getResources().openRawResource(R.raw.financialagent);
             GoogleCredentials googleCredentials = GoogleCredentials.fromStream(inputStream); //.createScoped(Lists.newArrayList("https://www.googleapis.com/auth/cloud-platform"));
             String projectId = ((ServiceAccountCredentials)googleCredentials).getProjectId();
 
@@ -414,7 +427,7 @@ public class CounsellorBotActivity extends AppCompatActivity implements BotReply
             sessionName = SessionName.of(projectId, uuid);
 
             //sending problem msg to dialogflow agent
-            sendMsgToBot("I had a break-up recently");
+            sendMsgToBot("I have low income salary");
         }
         catch (Exception e){
             Toast.makeText(this, "There was an error, please try again later", Toast.LENGTH_SHORT).show();

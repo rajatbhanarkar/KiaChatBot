@@ -294,10 +294,18 @@ public class RunModelActivity extends AppCompatActivity {
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
             //your codes here
+            /*{
+                "apikey": "dcmI9Bcsrcem5IMRn3RFZNv7uhP0hUli3QyNCSVPI9qL",
+              "iam_apikey_description": "Auto-generated for key d1e93c75-4f0c-40ab-ac49-e6cfa43a1f84",
+              "iam_apikey_name": "Auto-generated service credentials",
+              "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+              "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/b5cb3cb6b44d408cbd1b6dcac51d2d18::serviceid:ServiceId-825db978-fdfb-4125-9121-44a4a3a9cd73",
+              "url": "https://api.us-east.natural-language-understanding.watson.cloud.ibm.com/instances/35a3c571-6c4b-48fa-9ecf-            c34fe4a4350a"
+            }*/
 
-            IamAuthenticator authenticator = new IamAuthenticator("wSSlbdbiTO4T3z2J4zINcnIWAUB_B1xatoeooUjgdhgI");
+            IamAuthenticator authenticator = new IamAuthenticator("dcmI9Bcsrcem5IMRn3RFZNv7uhP0hUli3QyNCSVPI9qL");
             NaturalLanguageUnderstanding naturalLanguageUnderstanding = new NaturalLanguageUnderstanding("2020-08-01", authenticator);
-            naturalLanguageUnderstanding.setServiceUrl("https://api.eu-gb.natural-language-understanding.watson.cloud.ibm.com/instances/e900ed5f-3e93-45f7-826b-e6fc8645302e");
+            naturalLanguageUnderstanding.setServiceUrl("https://api.us-east.natural-language-understanding.watson.cloud.ibm.com/instances/35a3c571-6c4b-48fa-9ecf-c34fe4a4350a");
 
             EmotionOptions emotion = new EmotionOptions.Builder().build();
 

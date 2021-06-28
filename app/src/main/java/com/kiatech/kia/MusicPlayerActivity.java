@@ -55,6 +55,22 @@ public class MusicPlayerActivity extends AppCompatActivity {
         mediaPlayer.setPlaybackParams(playbackParams);
         mediaPlayer.start();
 
+        circleView.animate().scaleX(12f).scaleY(12f).alpha(0f).setDuration(4000).start();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        circleView.setScaleX(1f); circleView.setScaleY(1f); circleView.setAlpha(1f);
+                        circleView.animate().scaleX(12f).scaleY(12f).alpha(0f).setDuration(4000).start();
+                    }
+                });
+                handler.postDelayed(this, 4000);
+            }
+        }, 4000);
+
         PlayPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

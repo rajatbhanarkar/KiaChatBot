@@ -11,10 +11,12 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class HomePageActivity extends AppCompatActivity {
 
     CardView cardView1, cardView2, cardView3, cardView4, cardView5, cardView6;
+    ImageView Diary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +31,9 @@ public class HomePageActivity extends AppCompatActivity {
         cardView4 = (CardView)findViewById(R.id.cvhpacard4);
         cardView5 = (CardView)findViewById(R.id.cvhpacard5);
         cardView6 = (CardView)findViewById(R.id.cvhpacard6);
+        Diary = (ImageView)findViewById(R.id.ivhpadiary);
 
-        cardView1.setOnClickListener(new View.OnClickListener() {
+        Diary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RunModelActivity.class);
@@ -38,7 +41,7 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-        cardView2.setOnClickListener(new View.OnClickListener() {
+        cardView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openDialog();

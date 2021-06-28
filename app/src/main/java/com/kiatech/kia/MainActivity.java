@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() { // when timer complete, go to chatbot
-                Intent intent = new Intent(getApplicationContext(), ChatBotActivity.class);
+                Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
                 startActivity(intent);
                 finish();
             }
