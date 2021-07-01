@@ -3,6 +3,7 @@ package com.kiatech.kia;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -40,6 +41,8 @@ public class HealthStatusActivity extends AppCompatActivity implements OnChartGe
     LineChart lineChart;
     ImageView Info;
     ImageView Back;
+    TextView Improving;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +54,16 @@ public class HealthStatusActivity extends AppCompatActivity implements OnChartGe
         getWindow().setNavigationBarColor(getResources().getColor(R.color.white));
         getWindow().setStatusBarColor(getResources().getColor(R.color.white));
 
+        sharedPreferences = getSharedPreferences("KiaSharedPreferences", MODE_PRIVATE);
+
         // Declaring all IDs and linking to XML
 
         lineChart = (LineChart)findViewById(R.id.lineChart);
         Info = (ImageView) findViewById(R.id.tvinfo);
         Back = (ImageView)findViewById(R.id.ivback);
+        Improving = (TextView)findViewById(R.id.tvimproving);
+
+        Improving.setText("Hey " + sharedPreferences.getString("UserName", "User") + ",\nyou seem to be really improving this week!");
 
         // OnClick show the health labels 1-7
 

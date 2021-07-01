@@ -124,6 +124,9 @@ public class CounsellorBotActivity extends AppCompatActivity implements BotReply
         sharedPreferences = getSharedPreferences("KiaSharedPreferences", MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
+        counsgender = sharedPreferences.getString("BotGender", "female");
+        userName = sharedPreferences.getString("UserName", "User");
+
         //Ask for permissions
 
         if ((ContextCompat.checkSelfPermission(CounsellorBotActivity.this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(CounsellorBotActivity.this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(CounsellorBotActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)){
@@ -314,7 +317,7 @@ public class CounsellorBotActivity extends AppCompatActivity implements BotReply
                 }
                 message = message.substring(1);
 
-                message = message.replace("Alex", "Mahima");
+                message = message.replace("Alex", userName);
 
                 RecievedText.setText(""+message);
                 if (message.contains("http")){
@@ -459,6 +462,7 @@ public class CounsellorBotActivity extends AppCompatActivity implements BotReply
         if(returnResponse != null){
             String botReply = returnResponse.getQueryResult().getFulfillmentText();
             if(!botReply.isEmpty()){
+                botReply = botReply.replace("Alex", userName);
                 String[] sssss = botReply.split("\n\n\n\n");
 
                 if (sssss.length>1){

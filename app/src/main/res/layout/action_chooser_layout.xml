@@ -18,10 +18,11 @@
         android:src="@drawable/chatbot_logo"/>
 
     <TextView
+        android:id="@+id/tvdontworry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppinssemibold"
-        android:text="Hey Mahima, don't worry! I got you!\n\nI would suggest you to first calm down and then talk to Kia for solving your problem.\n\n\nWhat would you like to do?"
+        android:text="Hey User, don't worry! I got you!\n\nI would suggest you to first calm down and then talk to Kia for solving your problem.\n\n\nWhat would you like to do?"
         android:textColor="@color/black"
         android:layout_marginTop="@dimen/_10sdp"
         android:textSize="@dimen/_13sdp"

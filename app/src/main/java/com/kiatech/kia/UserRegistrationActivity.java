@@ -244,7 +244,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Alexa.setBackgroundResource(R.drawable.circle);
                         Alex.setBackgroundResource(R.drawable.circle2);
-                        userDetails.setCounsellor("Alexa");
+                        userDetails.setCounsellor("female");
                     }
                 });
 
@@ -253,7 +253,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Alex.setBackgroundResource(R.drawable.circle);
                         Alexa.setBackgroundResource(R.drawable.circle2);
-                        userDetails.setCounsellor("Alex");
+                        userDetails.setCounsellor("male");
                     }
                 });
 
@@ -261,7 +261,10 @@ public class UserRegistrationActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         editor.putString("UserDetails", new Gson().toJson(userDetails));
+                        editor.putString("UserName", userDetails.getName());
+                        editor.putString("BotGender", userDetails.getCounsellor());
                         editor.putBoolean("Registered", true);
+                        editor.putInt("FirstTime", 0);
                         editor.commit(); editor.apply();
 
                         Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);

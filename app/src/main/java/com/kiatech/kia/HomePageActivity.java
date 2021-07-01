@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +13,15 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class HomePageActivity extends AppCompatActivity {
 
     CardView cardView1, cardView2, cardView3, cardView4, cardView5, cardView6;
     ImageView Diary;
+    TextView Greeting;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,12 @@ public class HomePageActivity extends AppCompatActivity {
         cardView5 = (CardView)findViewById(R.id.cvhpacard5);
         cardView6 = (CardView)findViewById(R.id.cvhpacard6);
         Diary = (ImageView)findViewById(R.id.ivhpadiary);
+        Greeting = (TextView)findViewById(R.id.tvgreeting);
+
+        sharedPreferences = getSharedPreferences("KiaSharedPreferences", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        Greeting.setText("Hi, " + sharedPreferences.getString("UserName", "User") + "!");
 
         Diary.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,36 +62,27 @@ public class HomePageActivity extends AppCompatActivity {
 
     void openDialog(){
         Dialog dialog = new Dialog(HomePageActivity.this, R.style.myDialog);
-        dialog.setContentView(R.layout.problem_type_chooser_layout);
+        dialog.setContentView(R.layout.action_chooser_layout);
 
-        Button Confirm = (Button)dialog.findViewById(R.id.btndlg1confirm);
+        CardView CalmDown = (CardView)dialog.findViewById(R.id.cvcalmdown);
+        CardView TalkCounsellor = (CardView)dialog.findViewById(R.id.cvtalkcounsellor);
+        TextView DontWorry = (TextView)dialog.findViewById(R.id.tvdontworry);
 
-        Confirm.setOnClickListener(new View.OnClickListener() {
+        DontWorry.setText("Hey " + sharedPreferences.getString("UserName", "User") +", don't worry! I got you!\n\nI would suggest you to first calm down and then talk to Kia for solving your problem.\n\n\nWhat would you like to do?");
+
+        CalmDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog dialog2 = new Dialog(HomePageActivity.this, R.style.myDialog);
-                dialog2.setContentView(R.layout.action_chooser_layout);
+                Intent intent = new Intent(getApplicationContext(), MusicPlayerActivity.class);
+                startActivity(intent);
+            }
+        });
 
-                CardView CalmDown = (CardView)dialog2.findViewById(R.id.cvcalmdown);
-                CardView TalkCounsellor = (CardView)dialog2.findViewById(R.id.cvtalkcounsellor);
-
-                CalmDown.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), MusicPlayerActivity.class);
-                        startActivity(intent);
-                    }
-                });
-
-                TalkCounsellor.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), CounsellorBotActivity.class);
-                        startActivity(intent);
-                    }
-                });
-
-                dialog2.show();
+        TalkCounsellor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CounsellorBotActivity.class);
+                startActivity(intent);
             }
         });
         

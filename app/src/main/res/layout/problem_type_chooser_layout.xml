@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppinssemibold"
-        android:text="Sorry to hear that, Rajat. Don't worry, I'm here to help you out!\n\nPlease help me with the exact reason for your problem:"
+        android:text="Sorry to hear that. Don't worry, I'm here to help you out!\n\nPlease help me with the exact reason for your problem:"
         android:textColor="@color/black"
         android:layout_marginTop="@dimen/_5sdp"
         android:textSize="@dimen/_13sdp"

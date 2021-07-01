@@ -53,9 +53,10 @@
         android:layout_marginTop="@dimen/_20sdp" />
 
     <TextView
+        android:id="@+id/tvimproving"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hey Mahima,\nyou seem to be really improving this week!"
+        android:text="Hey User,\nyou seem to be really improving this week!"
         android:fontFamily="@font/poppinssemibold"
         android:layout_marginLeft="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_30sdp"

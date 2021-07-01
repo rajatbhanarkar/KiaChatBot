@@ -8,6 +8,7 @@
     tools:context=".MusicPlayerActivity">
 
     <TextView
+        android:id="@+id/tvusercalm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -16,7 +17,7 @@
         android:layout_marginTop="@dimen/_80sdp"
         android:fontFamily="@font/poppinssemibold"
         android:textSize="@dimen/_18sdp"
-        android:text="Mahima, Calm yourself down"/>
+        android:text="User, Calm yourself down"/>
 
     <TextView
         android:id="@+id/circleview"

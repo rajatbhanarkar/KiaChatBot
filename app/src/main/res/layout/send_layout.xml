@@ -17,7 +17,7 @@
             android:id="@+id/tvsend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello Rajat!"
+            android:text="Hello User!"
             android:fontFamily="@font/poppinsregular"
             android:padding="12dp"
             android:textStyle="bold"

@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinssemibold"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:text="Hi, Mahima!"
+                android:text="Hi, User!"
                 android:layout_marginLeft="@dimen/_45sdp"
                 android:elevation="15dp"
                 android:textColor="@color/black"

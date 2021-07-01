@@ -215,8 +215,6 @@ public class RunModelActivity extends AppCompatActivity {
                     isListening = false;
 
                     Log.d("Final user text", totalUserSpeech);
-
-                    getTextEmotion(totalUserSpeech);
                 }
             }
         });
@@ -264,6 +262,7 @@ public class RunModelActivity extends AppCompatActivity {
             Log.d("---- Bundle ----", bundle.toString());
             ArrayList<String> result = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             totalUserSpeech += result.get(0);
+            getTextEmotion(totalUserSpeech);
             isListening = true;
             speechRecognizer.startListening(SpeechIntent);
         }
@@ -293,6 +292,9 @@ public class RunModelActivity extends AppCompatActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
+
+            Log.d("---- Message ----", "Message" + msg);
+
             //your codes here
             /*{
                 "apikey": "dcmI9Bcsrcem5IMRn3RFZNv7uhP0hUli3QyNCSVPI9qL",
@@ -335,7 +337,7 @@ public class RunModelActivity extends AppCompatActivity {
                         textEmo = cats[list.indexOf(max)];
 
                         String temo = textEmo;
-                        String iemo = getImageEmo();
+                        //String iemo = getImageEmo();
 
                         runOnUiThread(new Runnable() {
                             @Override

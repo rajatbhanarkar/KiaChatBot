@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.media.PlaybackParams;
 import android.net.Uri;
@@ -29,10 +30,11 @@ import java.io.IOException;
 
 public class MusicPlayerActivity extends AppCompatActivity {
 
-    TextView circleView;
+    TextView circleView, UserCalm;
     ImageView PlayPause;
     MediaPlayer mediaPlayer;
     StorageReference storageReference;
+    SharedPreferences sharedPreferences;
 
     boolean isPlaying = false;
 
@@ -46,6 +48,11 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
         circleView = (TextView)findViewById(R.id.circleview);
         PlayPause = (ImageView)findViewById(R.id.ivplaypause);
+        UserCalm = (TextView)findViewById(R.id.tvusercalm);
+
+        sharedPreferences = getSharedPreferences("KiaSharedPreferences", MODE_PRIVATE);
+
+        UserCalm.setText(sharedPreferences.getString("UserName", "User") + ", Calm yourself down");
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
